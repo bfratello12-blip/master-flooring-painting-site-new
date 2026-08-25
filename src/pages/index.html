@@ -1,0 +1,587 @@
+<!--meta
+{
+  "slug": "index",
+  "nav": "home",
+  "title": "Long Island Painters | Interior &amp; Exterior Painting | Master Flooring &amp; Painting",
+  "description": "Painting contractor serving Suffolk County, Nassau County and Long Island. Interior, exterior, residential and commercial painting, plus flooring and power washing. Free estimates — call (631) 620-9793.",
+  "changefreq": "weekly",
+  "priority": "1.0",
+  "schema": [
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What areas of Long Island do you paint in?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We work throughout Suffolk County and Nassau County, from the Nassau border out through Brookhaven, Riverhead and the East End. Towns we are in regularly include Smithtown, Huntington, Islip, Babylon, Patchogue, Commack, Hicksville, Massapequa, Garden City and Levittown." }
+        },
+        {
+          "@type": "Question",
+          "name": "Are painting estimates free?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. We come out, look at the actual space, talk through what you want and give you a written estimate that lists the prep, the coats and the areas included. There is no charge and no obligation." }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does it cost to paint a room or a house on Long Island?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It depends on square footage, ceiling height, how much patching the walls need, the number of coats and whether trim, doors and ceilings are included. That is why we quote after seeing the space rather than over the phone. You will have the price in writing before anything starts." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to move my furniture before you paint?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. We move what needs moving, center it in the room and cover it. Floors get protected, plates and fixtures come off where needed, and we clean up at the end of every day so you can still live in the house while we work." }
+        },
+        {
+          "@type": "Question",
+          "name": "When can you paint the outside of my house on Long Island?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The exterior season here generally runs from spring through late fall, when temperatures and humidity let the coating cure properly. We watch the forecast and schedule around it instead of pushing a job out in the wrong conditions." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you handle commercial painting jobs?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. We paint offices, retail spaces, apartment and rental turnovers, hallways and common areas across Suffolk and Nassau County, and we can work evenings or weekends to stay out of your operating hours." }
+        }
+      ]
+    }
+  ]
+}
+meta-->
+
+<!-- ============================ HERO ============================ -->
+<section class="hero">
+  {{HEROBG}}
+  <div class="container hero__grid">
+    <div>
+      <div class="hero__badges">
+        <span class="pill"><svg aria-hidden="true"><use href="#i-map-pin"/></svg> Suffolk &amp; Nassau County, NY</span>
+        <span class="pill"><svg aria-hidden="true"><use href="#i-award"/></svg> Angi Super Service Award 2025</span>
+      </div>
+      <h1>Painting Long Island homes with <em>straight lines</em> and no shortcuts.</h1>
+      <p class="hero__sub">Master Flooring &amp; Painting is a father-and-son contractor working across Suffolk County and Nassau County. Interior and exterior painting, flooring installation and removal, and power washing — for homes and commercial properties.</p>
+      <ul class="hero__points">
+        <li><svg aria-hidden="true"><use href="#i-check-circle"/></svg> Free, written estimates</li>
+        <li><svg aria-hidden="true"><use href="#i-check-circle"/></svg> Prep done before a drop of paint</li>
+        <li><svg aria-hidden="true"><use href="#i-check-circle"/></svg> Furniture covered, floors protected</li>
+        <li><svg aria-hidden="true"><use href="#i-check-circle"/></svg> Site cleaned at the end of every day</li>
+      </ul>
+      <div class="btn-row">
+        <a class="btn btn--lg" href="tel:6316209793"><svg aria-hidden="true"><use href="#i-phone"/></svg> Call (631) 620-9793</a>
+        <a class="btn btn--lg btn--outline-light" href="services.html">See what we do</a>
+      </div>
+    </div>
+
+    <div class="hero__media">
+      <div class="quote-card">
+        <h2 id="estimate">Get a free estimate</h2>
+        <p class="quote-card__note">Tell us a little about the project and we'll get back to you with a time to come take a look.</p>
+        <form data-estimate-form novalidate>
+          <div class="form-grid form-grid--2">
+            <div class="field">
+              <label for="h-name">Name <span class="req">*</span></label>
+              <input type="text" id="h-name" name="name" autocomplete="name" placeholder="Your name" required>
+              <span class="error-msg">Please enter your name.</span>
+            </div>
+            <div class="field">
+              <label for="h-phone">Phone <span class="req">*</span></label>
+              <input type="tel" id="h-phone" name="phone" autocomplete="tel" placeholder="(631) 000-0000" required>
+              <span class="error-msg">Please enter a 10-digit phone number.</span>
+            </div>
+            <div class="field">
+              <label for="h-location">Town or ZIP <span class="req">*</span></label>
+              <input type="text" id="h-location" name="location" autocomplete="address-level2" placeholder="e.g. Smithtown" required>
+              <span class="error-msg">Please tell us where the project is.</span>
+            </div>
+            <div class="field">
+              <label for="h-service">Service <span class="req">*</span></label>
+              <select id="h-service" name="service" required>
+                <option value="">Choose one…</option>
+                <option value="interior-painting">Interior Painting</option>
+                <option value="exterior-painting">Exterior Painting</option>
+                <option value="residential-painting">Residential Painting</option>
+                <option value="commercial-painting">Commercial Painting</option>
+                <option value="cabinet-painting">Cabinet &amp; Trim Painting</option>
+                <option value="deck-fence-staining">Deck &amp; Fence Staining</option>
+                <option value="flooring-installation">Flooring Installation</option>
+                <option value="flooring-removal">Flooring Removal</option>
+                <option value="power-washing">Power Washing</option>
+                <option value="multiple">Multiple services / not sure</option>
+              </select>
+              <span class="error-msg">Please choose a service.</span>
+            </div>
+            <div class="field field--full">
+              <label for="h-details">Project details</label>
+              <textarea id="h-details" name="details" rows="3" placeholder="Rooms, square footage, colors you're considering, timing…"></textarea>
+            </div>
+          </div>
+          <div class="sr-only" aria-hidden="true">
+            <label for="h-company">Company website</label>
+            <input type="text" id="h-company" name="company_website" tabindex="-1" autocomplete="off">
+          </div>
+          <label class="consent" style="margin-top:.85rem">
+            <input type="checkbox" name="consent" required>
+            <span>It's OK to contact me about this request by phone, text or email.</span>
+          </label>
+          <button class="btn btn--lg btn--block" type="submit" style="margin-top:1.1rem">Request my free estimate <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+          <div class="form-status" aria-live="polite"></div>
+          <p class="quote-card__foot">Rather talk it through? Call <a href="tel:6316209793">(631) 620-9793</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  {{HERONOTE:Wide, bright shot of a professional painter rolling a warm neutral onto a wall in a spacious Long Island living room — crisp white trim, hardwood floors covered and taped, natural light from a large window.}}
+</section>
+<section class="trust-strip" aria-label="Why homeowners hire us">
+  <div class="container trust-strip__inner">
+    <div class="trust-item">
+      <span class="trust-item__icon"><svg aria-hidden="true"><use href="#i-award"/></svg></span>
+      <span><strong>Angi Super Service Award</strong><span>2025 winner</span></span>
+    </div>
+    <div class="trust-item">
+      <span class="trust-item__icon"><svg aria-hidden="true"><use href="#i-star"/></svg></span>
+      <span><strong>5.0 rating on Google</strong><span>From verified customers</span></span>
+    </div>
+    <div class="trust-item">
+      <span class="trust-item__icon"><svg aria-hidden="true"><use href="#i-users"/></svg></span>
+      <span><strong>Father &amp; son owned</strong><span>You deal with the owners</span></span>
+    </div>
+    <div class="trust-item">
+      <span class="trust-item__icon"><svg aria-hidden="true"><use href="#i-clipboard"/></svg></span>
+      <span><strong>Free written estimates</strong><span>Priced before we start</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SERVICES ============================ -->
+<section class="section section--paper" id="services">
+  <div class="container">
+    <div class="head-row">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">What we do</span>
+        <h2>Painting, flooring and power washing across Long Island.</h2>
+        <p class="lead">Interior and exterior painting, flooring installation and removal, and power washing for homes and commercial properties across Suffolk and Nassau County. Different scopes, same standard for prep, finish and cleanup.</p>
+      </div>
+      <a class="btn btn--ghost" href="services.html" data-reveal data-delay="1">All services <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+    </div>
+
+    <div class="grid grid--2">
+      <article class="card service-card" data-reveal>
+        <div class="card__media">
+          <span class="card__tag">Most requested</span>
+          <figure class="ph ph--3x2">
+            <div class="ph__inner">
+              <span class="ph__icon"><svg aria-hidden="true"><use href="#i-image"/></svg></span>
+              <span class="ph__label">Image placeholder</span>
+              <p class="ph__desc">Painter cutting in a crisp line where a warm white wall meets bright white trim in a sunlit Long Island living room with hardwood floors.</p>
+            </div>
+          </figure>
+        </div>
+        <div class="card__body">
+          <span class="service-card__icon"><svg aria-hidden="true"><use href="#i-roller"/></svg></span>
+          <h3>Interior Painting</h3>
+          <p>Walls, ceilings, trim, doors, closets and cabinets. We patch, sand and prime first, then lay down clean, even coats that don't flash or leave roller marks.</p>
+          <ul class="service-card__list">
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg> Drywall patching and skim coating</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg> Trim, doors and crown molding</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg> Kitchen cabinet refinishing</li>
+          </ul>
+          <a class="link-arrow" href="interior-painting.html">Interior painting details <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
+      </article>
+
+      <article class="card service-card" data-reveal data-delay="1">
+        <div class="card__media">
+          <figure class="ph ph--3x2">
+            <div class="ph__inner">
+              <span class="ph__icon"><svg aria-hidden="true"><use href="#i-image"/></svg></span>
+              <span class="ph__label">Image placeholder</span>
+              <p class="ph__desc">Two-story Long Island colonial mid-repaint — cedar shingles freshly coated, ladders and drop cloths in place, crisp white trim against a blue sky.</p>
+            </div>
+          </figure>
+        </div>
+        <div class="card__body">
+          <span class="service-card__icon"><svg aria-hidden="true"><use href="#i-home"/></svg></span>
+          <h3>Exterior Painting</h3>
+          <p>Siding, shingles, stucco, trim, shutters, porches and decks. Long Island weather is hard on a house, so surfaces get washed, scraped and primed before any topcoat goes on.</p>
+          <ul class="service-card__list">
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg> Wash, scrape, sand and spot-prime</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg> Caulking and minor trim repair</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg> Deck and fence staining</li>
+          </ul>
+          <a class="link-arrow" href="exterior-painting.html">Exterior painting details <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
+      </article>
+
+      <article class="card service-card" data-reveal>
+        <div class="card__media">
+          <figure class="ph ph--3x2">
+            <div class="ph__inner">
+              <span class="ph__icon"><svg aria-hidden="true"><use href="#i-image"/></svg></span>
+              <span class="ph__label">Image placeholder</span>
+              <p class="ph__desc">Newly installed wide-plank vinyl flooring running through a bright open-concept living room, tight seams and a clean transition at the doorway.</p>
+            </div>
+          </figure>
+        </div>
+        <div class="card__body">
+          <span class="service-card__icon"><svg aria-hidden="true"><use href="#i-layers"/></svg></span>
+          <h3>Flooring Installation &amp; Removal</h3>
+          <p>Vinyl plank, laminate and tile installed level and tight. Old flooring pulled out and hauled away, subfloors checked, transitions and trim finished properly.</p>
+          <ul class="service-card__list">
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg> Vinyl plank, laminate and tile</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg> Dust-controlled tear-out and haul-away</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg> Subfloor prep and level checks</li>
+          </ul>
+          <a class="link-arrow" href="flooring-installation.html">Flooring details <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
+      </article>
+
+      <article class="card service-card" data-reveal data-delay="1">
+        <div class="card__media">
+          <figure class="ph ph--3x2">
+            <div class="ph__inner">
+              <span class="ph__icon"><svg aria-hidden="true"><use href="#i-image"/></svg></span>
+              <span class="ph__label">Image placeholder</span>
+              <p class="ph__desc">Power washing in progress on vinyl siding, with a clean bright stripe cut through years of green-grey grime.</p>
+            </div>
+          </figure>
+        </div>
+        <div class="card__body">
+          <span class="service-card__icon"><svg aria-hidden="true"><use href="#i-droplets"/></svg></span>
+          <h3>Power Washing</h3>
+          <p>Siding, decks, patios, pavers, walkways, driveways and fences. Pressure and technique matched to the surface so dirt, mildew and algae come off without damage.</p>
+          <ul class="service-card__list">
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg> House washing and soft washing</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg> Decks, patios, pavers and driveways</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg> Landscaping covered and rinsed down</li>
+          </ul>
+          <a class="link-arrow" href="power-washing.html">Power washing details <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
+      </article>
+
+      <article class="card service-card" data-reveal>
+        <div class="card__body">
+          <span class="service-card__icon"><svg aria-hidden="true"><use href="#i-palette"/></svg></span>
+          <h3>Residential Painting</h3>
+          <p>From a single bedroom to a full-house repaint before you move in or list. We work around your schedule, keep the house livable and finish when we said we would.</p>
+          <a class="link-arrow" href="residential-painting.html">Residential painting <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
+      </article>
+
+      <article class="card service-card" data-reveal data-delay="1">
+        <div class="card__body">
+          <span class="service-card__icon"><svg aria-hidden="true"><use href="#i-building"/></svg></span>
+          <h3>Commercial Painting</h3>
+          <p>Offices, retail spaces, rental turnovers, hallways and common areas. Evening and weekend work available so your doors stay open while we paint.</p>
+          <a class="link-arrow" href="commercial-painting.html">Commercial painting <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ WHY US ============================ -->
+<section class="section section--white">
+  <div class="container split">
+    <div class="split__media" data-reveal>
+      <div class="media-stack">
+        <figure class="ph ph--4x3 media-stack__main">
+          <div class="ph__inner">
+            <span class="ph__icon"><svg aria-hidden="true"><use href="#i-image"/></svg></span>
+            <span class="ph__label">Image placeholder</span>
+            <p class="ph__desc">Room prepped for painting: furniture centered and covered in plastic, floors fully papered, blue tape along the baseboards, ladder and cut bucket ready.</p>
+          </div>
+        </figure>
+        <figure class="ph ph--1x1 ph--sm media-stack__inset">
+          <div class="ph__inner">
+            <span class="ph__icon"><svg aria-hidden="true"><use href="#i-image"/></svg></span>
+            <span class="ph__label">Image placeholder</span>
+            <p class="ph__desc">Close-up of a hand sanding a patched wall smooth before priming.</p>
+          </div>
+        </figure>
+      </div>
+    </div>
+    <div data-reveal data-delay="1">
+      <span class="eyebrow">Why the finish holds up</span>
+      <h2>Most of the job happens before the paint does.</h2>
+      <p class="lead">Anyone can roll a wall. The reason a paint job still looks sharp five winters later is what happened underneath it — the patching, the sanding, the caulking, the primer, and the discipline to wait for the right conditions.</p>
+      <ul class="check-list" style="margin-top:1.75rem">
+        <li><svg aria-hidden="true"><use href="#i-check-circle"/></svg> <span><strong>Real prep.</strong> Nail pops, cracks, peeling and water stains get addressed and primed — not painted over and forgotten.</span></li>
+        <li><svg aria-hidden="true"><use href="#i-check-circle"/></svg> <span><strong>Your house stays protected.</strong> Furniture is moved and covered, floors are papered, hardware comes off, and edges are cut by hand.</span></li>
+        <li><svg aria-hidden="true"><use href="#i-check-circle"/></svg> <span><strong>Quality coatings.</strong> We use durable, well-known products chosen for the surface and the exposure, not whatever is cheapest that week.</span></li>
+        <li><svg aria-hidden="true"><use href="#i-check-circle"/></svg> <span><strong>Clean at the end of the day.</strong> Tools packed, trash out, floors swept. You should be able to use your home while we're working.</span></li>
+        <li><svg aria-hidden="true"><use href="#i-check-circle"/></svg> <span><strong>You deal with the owners.</strong> The same people who quote your job are on it. Questions get answered directly.</span></li>
+      </ul>
+      <div class="btn-row">
+        <a class="btn" href="about.html">About our family business <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        <a class="btn btn--ghost" href="contact.html">Get a free estimate</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ BEFORE / AFTER ============================ -->
+<section class="section section--paper">
+  <div class="container">
+    <div class="section-head section-head--center" data-reveal>
+      <span class="eyebrow">Before &amp; after</span>
+      <h2>The difference a proper prep job makes</h2>
+      <p class="lead">Drag the handle to compare. Tired, patched-up surfaces on one side — clean, even, sharply cut finishes on the other.</p>
+    </div>
+
+    <div class="ba" data-reveal style="--pos:50%">
+      <div class="ba__layer">
+        <figure class="ph">
+          <div class="ph__inner">
+            <span class="ph__icon"><svg aria-hidden="true"><use href="#i-image"/></svg></span>
+            <span class="ph__label">Image placeholder — BEFORE</span>
+            <p class="ph__desc">Dated Long Island living room before painting: scuffed beige walls, yellowed trim, visible patches and nail holes, dull ceiling.</p>
+          </div>
+        </figure>
+      </div>
+      <div class="ba__layer ba__after">
+        <figure class="ph">
+          <div class="ph__inner">
+            <span class="ph__icon"><svg aria-hidden="true"><use href="#i-image"/></svg></span>
+            <span class="ph__label">Image placeholder — AFTER</span>
+            <p class="ph__desc">The same living room after painting: smooth soft-white walls, bright white trim and doors, clean ceiling, furniture back in place.</p>
+          </div>
+        </figure>
+      </div>
+      <span class="ba__tag ba__tag--before">Before</span>
+      <span class="ba__tag ba__tag--after">After</span>
+      <div class="ba__handle" aria-hidden="true"><span class="ba__grip"><svg aria-hidden="true"><use href="#i-move-h"/></svg></span></div>
+      <input class="ba__range" type="range" min="0" max="100" value="50" step="1" aria-label="Compare the before and after painting photos">
+    </div>
+
+    <div class="btn-row btn-row--center">
+      <a class="btn btn--ink" href="our-work.html">See more of our work <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FLOORING & POWER WASHING ============================ -->
+<section class="section section--white">
+  <div class="container split split--media-first">
+    <div data-reveal>
+      <span class="eyebrow">Flooring &amp; power washing</span>
+      <h2>Floors laid flat and tight. Exteriors brought back to clean.</h2>
+      <p class="lead">We install and remove flooring and wash exteriors across Long Island every week — vinyl plank, laminate and tile, full tear-outs, house washes, decks, patios and driveways. Both trades get a written estimate, a scheduled crew and a finish we put our name on.</p>
+      <ul class="check-list" style="margin-top:1.75rem">
+        <li><svg aria-hidden="true"><use href="#i-check-circle"/></svg> <span><strong>The subfloor decides everything.</strong> We check for flatness, soft spots and moisture before a single plank goes down, then plan the layout so seams and cuts land where they should and every doorway gets a proper transition.</span></li>
+        <li><svg aria-hidden="true"><use href="#i-check-circle"/></svg> <span><strong>Tear-out that stays contained.</strong> Carpet, tack strip, old tile, adhesive and vinyl come up with the work area sealed and the dust controlled — and the debris leaves with us instead of sitting in your driveway.</span></li>
+        <li><svg aria-hidden="true"><use href="#i-check-circle"/></svg> <span><strong>Pressure is a judgment call.</strong> Vinyl, cedar, fiber cement, composite decking, bluestone and pavers each want different pressure, tips and distance. We soft wash where forcing it would etch, gouge or drive water where it doesn't belong.</span></li>
+        <li><svg aria-hidden="true"><use href="#i-check-circle"/></svg> <span><strong>Sequenced with the rest of the job.</strong> If painting is happening too, the trades go in the right order — walls first, floor after, baseboard and touch-ups last — so nothing gets damaged or done twice.</span></li>
+      </ul>
+      <div class="btn-row">
+        <a class="btn" href="flooring-installation.html"><svg aria-hidden="true"><use href="#i-layers"/></svg> Flooring</a>
+        <a class="btn btn--ink" href="power-washing.html"><svg aria-hidden="true"><use href="#i-droplets"/></svg> Power washing</a>
+        <a class="btn btn--ghost" href="contact.html">Get a free estimate</a>
+      </div>
+    </div>
+    <div class="split__media" data-reveal data-delay="1">
+      <div class="media-stack">
+        <figure class="ph ph--4x3 media-stack__main">
+          <div class="ph__inner">
+            <span class="ph__icon"><svg aria-hidden="true"><use href="#i-image"/></svg></span>
+            <span class="ph__label">Image placeholder</span>
+            <p class="ph__desc">Installer kneeling to lay a row of light-oak luxury vinyl plank, tapping block and spacers in hand, half the room already finished.</p>
+          </div>
+        </figure>
+        <figure class="ph ph--1x1 ph--sm media-stack__inset">
+          <div class="ph__inner">
+            <span class="ph__icon"><svg aria-hidden="true"><use href="#i-image"/></svg></span>
+            <span class="ph__label">Image placeholder</span>
+            <p class="ph__desc">Power washer mid-pass on a paver patio, sharp line between grimy and clean stone.</p>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PROCESS ============================ -->
+<section class="section section--ink">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">How a job runs</span>
+      <h2>Four steps, no guesswork.</h2>
+      <p class="lead">You'll know what's happening, who's showing up and what it costs before anyone opens a can.</p>
+    </div>
+    <div class="steps steps--4">
+      <div class="step" data-reveal>
+        <span class="step__num">Step 01</span>
+        <h3>Walkthrough</h3>
+        <p>We come to you, look at the actual surfaces, talk through colors, sheens and problem spots, and measure what needs measuring.</p>
+      </div>
+      <div class="step" data-reveal data-delay="1">
+        <span class="step__num">Step 02</span>
+        <h3>Written estimate</h3>
+        <p>You get a clear quote in writing: what's included, how many coats, what prep is involved and what it costs. No pressure and no moving numbers.</p>
+      </div>
+      <div class="step" data-reveal data-delay="2">
+        <span class="step__num">Step 03</span>
+        <h3>Prep &amp; paint</h3>
+        <p>We protect the space, do the repairs and priming, then paint. You get a start date we actually keep and daily cleanup while we're there.</p>
+      </div>
+      <div class="step" data-reveal data-delay="3">
+        <span class="step__num">Step 04</span>
+        <h3>Final walkthrough</h3>
+        <p>We walk the job with you, mark anything you want touched up and handle it before we pack out. Nothing is finished until you say it is.</p>
+      </div>
+    </div>
+    <div class="btn-row">
+      <a class="btn" href="contact.html"><svg aria-hidden="true"><use href="#i-clipboard"/></svg> Book a free walkthrough</a>
+      <a class="btn btn--outline-light" href="tel:6316209793"><svg aria-hidden="true"><use href="#i-phone"/></svg> (631) 620-9793</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ REVIEWS ============================ -->
+<section class="section section--paper" id="reviews">
+  <div class="container">
+    <div class="section-head section-head--center" data-reveal>
+      <span class="eyebrow">Reviews</span>
+      <h2>What Long Island customers say</h2>
+    </div>
+
+    <div class="review-hero" data-reveal>
+      <div class="review-hero__score">
+        <div class="num">5.0</div>
+        <div class="stars stars--lg" role="img" aria-label="Rated 5 out of 5 stars">
+          <svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg>
+        </div>
+        <p style="font-size:.82rem;margin-top:.5rem;color:var(--slate-400)">Google rating</p>
+      </div>
+      <div class="review-hero__divider" aria-hidden="true"></div>
+      <div>
+        <h3 style="font-size:1.35rem;margin-bottom:.5rem">Rated 5.0 on Google</h3>
+        <p style="font-size:.95rem">Based on <span class="rc-placeholder" data-google-count>[REVIEW COUNT]</span> Google reviews from homeowners and businesses across Suffolk and Nassau County.</p>
+        <div class="btn-row" style="margin-top:1.15rem">
+          <a class="btn btn--sm btn--ink" href="https://www.masterflooringandpainting.com/" data-google-link>Read our Google reviews <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+          <a class="btn btn--sm btn--ghost" href="reviews.html">All reviews</a>
+        </div>
+      </div>
+      <div class="review-hero__badges">
+        <a class="angi-badge" href="https://www.angi.com/companylist/us/ny/medford/master-flooring-reviews-1.htm" target="_blank" rel="noopener">
+          <img src="assets/img/badges/angi-super-service-award-2025.webp" alt="Angi Super Service Award 2025 badge" width="46" height="52" loading="lazy">
+          <span><strong>Angi Super Service<br>Award 2025</strong><span>See our Angi profile</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="testimonials" style="margin-top:1.5rem">
+      <figure class="testimonial" data-reveal>
+        <span style="color:var(--orange)" aria-hidden="true"><svg style="width:26px;height:26px"><use href="#i-quote"/></svg></span>
+        <blockquote>“Highly recommend, hired to paint my dining room and kitchen. Did such a wonderful job, great work, clean and kept to his timeline. Reasonable priced. Already discussed future projects.”</blockquote>
+        <figcaption class="testimonial__foot">
+          <span class="testimonial__avatar" aria-hidden="true">I</span>
+          <span><span class="testimonial__name">Ingrid W.</span><span class="testimonial__meta">Verified customer review</span></span>
+        </figcaption>
+      </figure>
+      <figure class="testimonial" data-reveal data-delay="1">
+        <span style="color:var(--orange)" aria-hidden="true"><svg style="width:26px;height:26px"><use href="#i-quote"/></svg></span>
+        <blockquote>“The team was very friendly. They painted my whole house and deck. Power washed my ceiling. They listened to what I needed for this project and gave me some good advice. Completed the project on time with a great job. I will definitely hire them to do more projects for me.”</blockquote>
+        <figcaption class="testimonial__foot">
+          <span class="testimonial__avatar" aria-hidden="true">A</span>
+          <span><span class="testimonial__name">Anita M.</span><span class="testimonial__meta">Verified customer review</span></span>
+        </figcaption>
+      </figure>
+      <figure class="testimonial" data-reveal data-delay="2">
+        <span style="color:var(--orange)" aria-hidden="true"><svg style="width:26px;height:26px"><use href="#i-quote"/></svg></span>
+        <blockquote>“Excellent work and service. Everything is literally perfect. Changed an office to a bedroom and the work is immaculate. All new sheetrock and paint. On time, did what they said with beautiful results. Highly recommend.”</blockquote>
+        <figcaption class="testimonial__foot">
+          <span class="testimonial__avatar" aria-hidden="true">M</span>
+          <span><span class="testimonial__name">Miguel M.</span><span class="testimonial__meta">Verified customer review</span></span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SERVICE AREAS ============================ -->
+<section class="section section--white">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Where we work</span>
+      <h2>Painters serving Suffolk County and Nassau County</h2>
+      <p class="lead">We're Long Island based, so we know what salt air does to a south-shore exterior, what mid-century plaster does to a roller and how fast a west-facing trim board goes chalky out here.</p>
+    </div>
+
+    <div class="area-grid">
+      <article class="area-card" data-reveal>
+        <h3><svg aria-hidden="true"><use href="#i-map-pin"/></svg> Suffolk County, NY</h3>
+        <p>Our home base and where most of our work happens — from the Nassau line east through Brookhaven and Riverhead, and out toward the East End.</p>
+        <ul class="town-list">
+          <li>Smithtown</li><li>Huntington</li><li>Islip</li><li>Babylon</li><li>Commack</li><li>Hauppauge</li><li>Patchogue</li><li>Medford</li><li>Ronkonkoma</li><li>Bay Shore</li><li>Port Jefferson</li><li>Riverhead</li>
+        </ul>
+        <div style="margin-top:1.25rem"><a class="link-arrow" href="painters-suffolk-county.html">Suffolk County painting <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+      </article>
+
+      <article class="area-card" data-reveal data-delay="1">
+        <h3><svg aria-hidden="true"><use href="#i-map-pin"/></svg> Nassau County, NY</h3>
+        <p>Interior and exterior painting throughout Nassau — village homes, splits, capes, colonials and commercial spaces from the Queens border east.</p>
+        <ul class="town-list">
+          <li>Hicksville</li><li>Massapequa</li><li>Levittown</li><li>Garden City</li><li>Westbury</li><li>Bethpage</li><li>Plainview</li><li>Syosset</li><li>Merrick</li><li>Wantagh</li><li>Mineola</li><li>Farmingdale</li>
+        </ul>
+        <div style="margin-top:1.25rem"><a class="link-arrow" href="painters-nassau-county.html">Nassau County painting <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+      </article>
+    </div>
+
+    <div class="btn-row">
+      <a class="btn btn--ghost" href="service-areas.html">Full service area list <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section class="section section--paper">
+  <div class="container container--narrow">
+    <div class="section-head section-head--center" data-reveal>
+      <span class="eyebrow">Common questions</span>
+      <h2>Straight answers before you book</h2>
+    </div>
+
+    <div class="faq" data-reveal>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">What areas of Long Island do you paint in? <span class="faq__icon" aria-hidden="true"></span></button>
+        <div class="faq__a" aria-hidden="true"><div><p>We work throughout Suffolk County and Nassau County, from the Nassau border out through Brookhaven, Riverhead and the East End. Towns we're in regularly include Smithtown, Huntington, Islip, Babylon, Patchogue, Commack, Hicksville, Massapequa, Garden City and Levittown. If you're not sure whether you're in range, call and ask — it's usually a yes.</p></div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Are estimates free? <span class="faq__icon" aria-hidden="true"></span></button>
+        <div class="faq__a" aria-hidden="true"><div><p>Yes. We come out, look at the actual space, talk through what you want and give you a written estimate that lists the prep, the coats and the areas included. There's no charge and no obligation.</p></div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">How much does it cost to paint a room or a house? <span class="faq__icon" aria-hidden="true"></span></button>
+        <div class="faq__a" aria-hidden="true"><div><p>It depends on square footage, ceiling height, how much patching the walls need, the number of coats and whether trim, doors and ceilings are included. That's why we quote after seeing the space rather than throwing a number out over the phone. You'll have the price in writing before anything starts, and it doesn't change unless the scope does.</p></div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Do I need to move my furniture? <span class="faq__icon" aria-hidden="true"></span></button>
+        <div class="faq__a" aria-hidden="true"><div><p>No. We move what needs moving, center it in the room and cover it. Floors get protected, plates and fixtures come off where needed, and we clean up at the end of every day so you can still live in the house while we work.</p></div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">When can you paint the outside of my house on Long Island? <span class="faq__icon" aria-hidden="true"></span></button>
+        <div class="faq__a" aria-hidden="true"><div><p>The exterior season here generally runs from spring through late fall, when temperatures and humidity let the coating cure the way it's supposed to. We watch the forecast and schedule around it instead of pushing a job out in the wrong conditions. Exterior slots fill up fast in spring, so it's worth getting on the calendar early.</p></div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Do you handle commercial jobs? <span class="faq__icon" aria-hidden="true"></span></button>
+        <div class="faq__a" aria-hidden="true"><div><p>Yes. We paint offices, retail spaces, apartment and rental turnovers, hallways and common areas across Suffolk and Nassau County, and we can work evenings or weekends to stay out of your operating hours. <a href="commercial-painting.html">More on commercial painting</a>.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CTA ============================ -->
+<section class="cta-band">
+  <div class="container cta-band__inner">
+    <div data-reveal>
+      <span class="eyebrow">Ready when you are</span>
+      <h2>Let's price out your project.</h2>
+      <p>Tell us what you're thinking — a room, a whole house, an exterior before the season fills up — and we'll come take a look and put a real number in writing.</p>
+    </div>
+    <div class="btn-row" data-reveal data-delay="1">
+      <a class="btn btn--lg" href="contact.html"><svg aria-hidden="true"><use href="#i-clipboard"/></svg> Get my free estimate</a>
+      <a class="btn btn--lg btn--outline-light" href="tel:6316209793"><svg aria-hidden="true"><use href="#i-phone"/></svg> Call (631) 620-9793</a>
+      <a class="btn btn--lg btn--outline-light" href="mailto:masterflooringandpainting@gmail.com"><svg aria-hidden="true"><use href="#i-mail"/></svg> Email us</a>
+    </div>
+  </div>
+</section>
