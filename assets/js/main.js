@@ -9,17 +9,17 @@
                           "Write a review" or reviews link here.
    2. GOOGLE_REVIEW_COUNT Paste the current number of Google
                           reviews (digits only, e.g. "47").
-   3. FORM_ENDPOINT       Optional. Paste a form service endpoint
-                          (Formspree, Netlify Forms, Basin, etc.).
-                          While left as null, the estimate forms
-                          open the visitor's email app with the
-                          details pre-filled and send to the
-                          business inbox.
+   3. FORM_ENDPOINT       FormSubmit AJAX endpoint. Leads are
+                          emailed to the address in the URL.
+                          FormSubmit sends a one-time activation
+                          email to that address on the very first
+                          submission — the link in it must be
+                          clicked before leads start arriving.
    ------------------------------------------------------------- */
 const SITE_CONFIG = {
   GOOGLE_REVIEWS_URL: 'https://www.google.com/search?q=Master+Flooring+and+Painting+Long+Island+Reviews',
   GOOGLE_REVIEW_COUNT: '47',
-  FORM_ENDPOINT: null,
+  FORM_ENDPOINT: 'https://formsubmit.co/ajax/masterflooringandpainting@gmail.com',
   EMAIL: 'masterflooringandpainting@gmail.com',
   PHONE_DISPLAY: '(631) 620-9793',
   PHONE_LINK: 'tel:6316209793'
@@ -236,19 +236,6 @@ const SITE_CONFIG = {
   /* ---------------------------------------------------------
      Estimate forms
      --------------------------------------------------------- */
-  const SERVICE_LABELS = {
-    'interior-painting': 'Interior Painting',
-    'exterior-painting': 'Exterior Painting',
-    'residential-painting': 'Residential Painting',
-    'commercial-painting': 'Commercial Painting',
-    'cabinet-painting': 'Cabinet & Trim Painting',
-    'deck-fence-staining': 'Deck & Fence Staining',
-    'flooring-installation': 'Flooring Installation',
-    'flooring-removal': 'Flooring Removal',
-    'power-washing': 'Power Washing',
-    'multiple': 'Multiple Services / Not Sure'
-  };
-
   function preselectService() {
     const params = new URLSearchParams(window.location.search);
     const service = params.get('service');
@@ -271,30 +258,12 @@ const SITE_CONFIG = {
     return valid;
   }
 
-  function buildMailto(data) {
-    const lines = [
-      'Name: ' + data.name,
-      'Phone: ' + data.phone,
-      'Email: ' + (data.email || '—'),
-      'Town / ZIP: ' + (data.location || '—'),
-      'Service: ' + (SERVICE_LABELS[data.service] || data.service || '—'),
-      'Property type: ' + (data.property || '—'),
-      '',
-      'Project details:',
-      data.details || '—'
-    ];
-    return (
-      'mailto:' + SITE_CONFIG.EMAIL +
-      '?subject=' + encodeURIComponent('Estimate request — ' + (SERVICE_LABELS[data.service] || 'Painting') + ' — ' + data.name) +
-      '&body=' + encodeURIComponent(lines.join('\n'))
-    );
-  }
-
   function initForms() {
     $$('form[data-estimate-form]').forEach((form) => {
       const status = $('.form-status', form);
       const submitBtn = form.querySelector('button[type="submit"]');
       const originalLabel = submitBtn ? submitBtn.innerHTML : '';
+      let submitting = false;
 
       form.querySelectorAll('.field input, .field select, .field textarea').forEach((input) => {
         input.addEventListener('blur', () => {
@@ -308,6 +277,9 @@ const SITE_CONFIG = {
 
       form.addEventListener('submit', (e) => {
         e.preventDefault();
+
+        // Blocks a second lead from an Enter-key submit while a request is in flight.
+        if (submitting) return;
 
         // Honeypot
         const trap = form.querySelector('input[name="company_website"]');
@@ -335,65 +307,52 @@ const SITE_CONFIG = {
         }
 
         const fd = new FormData(form);
-        const data = Object.fromEntries(fd.entries());
+        fd.append('_subject', 'New Website Estimate Request - Master Flooring & Painting');
+        fd.append('_captcha', 'false');
 
+        submitting = true;
         if (submitBtn) {
           submitBtn.disabled = true;
           submitBtn.innerHTML = 'Sending…';
         }
 
         const finish = (ok) => {
+          if (ok) {
+            form.reset();
+            // Stays locked through navigation; thank-you.html handles Ads tracking.
+            window.location.href = 'thank-you.html';
+            return;
+          }
+          submitting = false;
           if (submitBtn) {
             submitBtn.disabled = false;
             submitBtn.innerHTML = originalLabel;
           }
-          if (ok) {
-            form.reset();
-            showStatus(
-              status,
-              'ok',
-              'Request received',
-              'Thanks — we have your details and will get back to you shortly. Need to talk sooner? Call ' +
-                SITE_CONFIG.PHONE_DISPLAY + '.'
-            );
-          }
         };
 
-        if (SITE_CONFIG.FORM_ENDPOINT) {
-          fetch(SITE_CONFIG.FORM_ENDPOINT, {
-            method: 'POST',
-            body: fd,
-            headers: { Accept: 'application/json' }
+        fetch(SITE_CONFIG.FORM_ENDPOINT, {
+          method: 'POST',
+          body: fd,
+          headers: { Accept: 'application/json' }
+        })
+          .then((res) => {
+            if (!res.ok) throw new Error('Request failed');
+            return res.json();
           })
-            .then((res) => {
-              if (!res.ok) throw new Error('Request failed');
-              finish(true);
-            })
-            .catch(() => {
-              finish(false);
-              showStatus(
-                status,
-                'err',
-                'That did not go through',
-                'Please call ' + SITE_CONFIG.PHONE_DISPLAY + ' or email ' + SITE_CONFIG.EMAIL + ' and we will take care of it.'
-              );
-            });
-        } else {
-          window.location.href = buildMailto(data);
-          setTimeout(() => {
-            if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.innerHTML = originalLabel;
-            }
+          .then((body) => {
+            // FormSubmit answers 200 with success:"false" when it has not accepted the lead.
+            if (!body || String(body.success) !== 'true') throw new Error('Delivery not confirmed');
+            finish(true);
+          })
+          .catch(() => {
+            finish(false);
             showStatus(
               status,
-              'ok',
-              'Your email is ready to send',
-              'We opened your email app with the details filled in — press send and we will get right back to you. ' +
-                'Prefer to talk? Call ' + SITE_CONFIG.PHONE_DISPLAY + '.'
+              'err',
+              'That did not go through',
+              'Please call ' + SITE_CONFIG.PHONE_DISPLAY + ' or email ' + SITE_CONFIG.EMAIL + ' and we will take care of it.'
             );
-          }, 600);
-        }
+          });
       });
     });
   }

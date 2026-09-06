@@ -466,6 +466,20 @@ function layout(meta, body) {
     (s) => `<script type="application/ld+json">\n${JSON.stringify(s, null, 2)}\n</script>`
   );
 
+  // Fires on page load only for pages that declare `adsConversion` in their front matter.
+  const adsConversion = meta.adsConversion
+    ? `
+<!-- Event snippet for ${meta.adsConversion.label} conversion page -->
+<script>
+  gtag('event', 'conversion', {
+      'send_to': '${meta.adsConversion.sendTo}',
+      'value': 1.0,
+      'currency': 'USD'
+  });
+</script>
+`
+    : '';
+
   return `<!DOCTYPE html>
 <!--
   ⚠ GENERATED FILE — do not edit directly.
@@ -484,8 +498,16 @@ function layout(meta, body) {
   gtag('js', new Date());
 
   gtag('config', 'G-YEGWGZ6R3Z');
+  gtag('config', 'AW-16845993473');
 </script>
 
+<!-- Google Ads call reporting: swaps in a forwarding number for eligible visitors -->
+<script>
+  gtag('config', 'AW-16845993473/cTWjCKuY8O8cEIHs5eA-', {
+    'phone_conversion_number': '${PHONE_DISPLAY}'
+  });
+</script>
+${adsConversion}
 <title>${meta.title}</title>
 <meta name="description" content="${meta.description}">
 <link rel="canonical" href="${url}">
