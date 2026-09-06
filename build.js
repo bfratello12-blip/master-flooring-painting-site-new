@@ -321,10 +321,7 @@ ${SERVICE_OPTIONS}
               <textarea id="${prefix}-details" name="details" rows="3" placeholder="Rooms, square footage, colors you're considering, timing…"></textarea>
             </div>
           </div>
-          <div class="sr-only" aria-hidden="true">
-            <label for="${prefix}-company">Company website</label>
-            <input type="text" id="${prefix}-company" name="company_website" tabindex="-1" autocomplete="off">
-          </div>
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
           <label class="consent" style="margin-top:.85rem">
             <input type="checkbox" name="consent" required>
             <span>It's OK to contact me about this request by phone, text or email.</span>

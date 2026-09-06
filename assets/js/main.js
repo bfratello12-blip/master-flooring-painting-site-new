@@ -281,9 +281,17 @@ const SITE_CONFIG = {
         // Blocks a second lead from an Enter-key submit while a request is in flight.
         if (submitting) return;
 
-        // Honeypot
-        const trap = form.querySelector('input[name="company_website"]');
-        if (trap && trap.value) return;
+        // Honeypot. Never fails silently — a dead button would look like a broken form.
+        const trap = form.querySelector('input[name="_honey"]');
+        if (trap && trap.value) {
+          showStatus(
+            status,
+            'err',
+            'That did not go through',
+            'Please call ' + SITE_CONFIG.PHONE_DISPLAY + ' or email ' + SITE_CONFIG.EMAIL + ' and we will take care of it.'
+          );
+          return;
+        }
 
         const fields = $$('.field', form);
         let firstInvalid = null;
