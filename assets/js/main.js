@@ -314,9 +314,9 @@ const SITE_CONFIG = {
           return;
         }
 
-        const fd = new FormData(form);
-        fd.append('_subject', 'New Website Estimate Request - Master Flooring & Painting');
-        fd.append('_captcha', 'false');
+        const payload = Object.fromEntries(new FormData(form).entries());
+        payload._subject = 'New Website Estimate Request - Master Flooring & Painting';
+        payload._captcha = 'false';
 
         submitting = true;
         if (submitBtn) {
@@ -338,10 +338,11 @@ const SITE_CONFIG = {
           }
         };
 
+        // FormSubmit's /ajax/ endpoint is documented for JSON, not multipart form data.
         fetch(SITE_CONFIG.FORM_ENDPOINT, {
           method: 'POST',
-          body: fd,
-          headers: { Accept: 'application/json' }
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload)
         })
           .then((res) => {
             if (!res.ok) throw new Error('Request failed');
