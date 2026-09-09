@@ -21,6 +21,7 @@ const SITE_URL = 'https://www.masterflooringandpainting.com';
 const PHONE_DISPLAY = '(631) 620-9793';
 const PHONE_HREF = 'tel:6316209793';
 const EMAIL = 'masterflooringandpainting@gmail.com';
+const META_PIXEL_ID = '803998612111685';
 
 const sprite = fs.readFileSync(path.join(SRC, 'partials', 'sprite.svg'), 'utf8').trim();
 
@@ -504,6 +505,37 @@ function layout(meta, body) {
     'phone_conversion_number': '${PHONE_DISPLAY}'
   });
 </script>
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+window.mfpMeta = (function () {
+  function uuid() {
+    if (window.crypto && typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+    if (window.crypto && typeof crypto.getRandomValues === 'function') {
+      var b = crypto.getRandomValues(new Uint8Array(16));
+      b[6] = (b[6] & 0x0f) | 0x40; b[8] = (b[8] & 0x3f) | 0x80;
+      var h = []; for (var i = 0; i < 16; i++) h.push(('0' + b[i].toString(16)).slice(-2));
+      return h.slice(0,4).join('')+'-'+h.slice(4,6).join('')+'-'+h.slice(6,8).join('')+'-'+h.slice(8,10).join('')+'-'+h.slice(10,16).join('');
+    }
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+  return { pixelId: '${META_PIXEL_ID}', pageViewId: uuid(), uuid: uuid };
+})();
+fbq('init', '${META_PIXEL_ID}');
+fbq('track', 'PageView', {}, { eventID: window.mfpMeta.pageViewId });
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1"></noscript>
 ${adsConversion}
 <title>${meta.title}</title>
 <meta name="description" content="${meta.description}">

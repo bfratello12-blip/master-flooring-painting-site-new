@@ -351,6 +351,7 @@ const SITE_CONFIG = {
           .then((body) => {
             // FormSubmit answers 200 with success:"false" when it has not accepted the lead.
             if (!body || String(body.success) !== 'true') throw new Error('Delivery not confirmed');
+            trackMetaLead(payload);
             finish(true);
           })
           .catch(() => {
@@ -371,6 +372,121 @@ const SITE_CONFIG = {
     el.className = 'form-status is-visible form-status--' + type;
     el.innerHTML = '<strong>' + title + '</strong>' + message;
     el.setAttribute('role', 'status');
+  }
+
+  /* ---------------------------------------------------------
+     Meta Pixel + Conversions API
+
+     The browser Pixel fires in the page <head>; this half sends
+     the matching server event so Meta can deduplicate the pair
+     on event_id. Everything here is best-effort and must never
+     block rendering, navigation or a form submission.
+     --------------------------------------------------------- */
+  const META_LEAD_KEY = 'mfp_meta_lead_id';
+  const META_CAPI_ENDPOINT = '/api/meta-capi';
+
+  function readCookie(name) {
+    const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+    return match ? decodeURIComponent(match[1]) : '';
+  }
+
+  function writeCookie(name, value, maxAgeSeconds) {
+    const secure = location.protocol === 'https:' ? '; Secure' : '';
+    document.cookie =
+      name + '=' + encodeURIComponent(value) + '; max-age=' + maxAgeSeconds + '; path=/; SameSite=Lax' + secure;
+  }
+
+  /* Keeps Meta click attribution through later navigation. Only a real
+     fbclid produces an fbc — nothing is invented for organic visitors. */
+  function captureFbc() {
+    const existing = readCookie('_fbc');
+    if (existing) return existing;
+    const fbclid = new URLSearchParams(window.location.search).get('fbclid');
+    if (!fbclid) return '';
+    const fbc = 'fb.1.' + Date.now() + '.' + fbclid;
+    writeCookie('_fbc', fbc, 90 * 24 * 60 * 60);
+    return fbc;
+  }
+
+  function sendCapiEvent(eventName, eventId, matchKeys) {
+    try {
+      const userData = { fbp: readCookie('_fbp'), fbc: readCookie('_fbc') };
+      if (matchKeys) {
+        if (matchKeys.em) userData.em = matchKeys.em;
+        if (matchKeys.ph) userData.ph = matchKeys.ph;
+      }
+      Object.keys(userData).forEach((key) => {
+        if (!userData[key]) delete userData[key];
+      });
+
+      fetch(META_CAPI_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          event_name: eventName,
+          event_id: eventId,
+          event_time: Math.floor(Date.now() / 1000),
+          event_source_url: window.location.href,
+          user_data: userData
+        }),
+        // Survives the redirect that follows a successful lead.
+        keepalive: true
+      }).catch(() => {});
+    } catch (err) {
+      /* tracking must never surface to the visitor */
+    }
+  }
+
+  /* fbevents.js writes _fbp asynchronously; give it a moment so the
+     server event carries the same browser id, then send regardless. */
+  function whenFbpReady(done) {
+    let waited = 0;
+    const poll = () => {
+      if (readCookie('_fbp') || waited >= 1000) return done();
+      waited += 200;
+      setTimeout(poll, 200);
+    };
+    poll();
+  }
+
+  function trackMetaLead(data) {
+    try {
+      const meta = window.mfpMeta;
+      if (!meta) return;
+      const eventId = meta.uuid();
+      // Handed to thank-you.html so the browser Lead reuses this exact id.
+      try {
+        sessionStorage.setItem(META_LEAD_KEY, eventId);
+      } catch (err) {
+        /* private mode: the server Lead still goes out */
+      }
+      sendCapiEvent('Lead', eventId, { em: data.email, ph: data.phone });
+    } catch (err) {
+      /* never let tracking fail a delivered lead */
+    }
+  }
+
+  /* Only a confirmed submission leaves an id behind, so a refresh or a
+     direct visit to thank-you.html cannot produce a second Lead. */
+  function firePendingMetaLead() {
+    if (!/\/thank-you(\.html)?$/.test(window.location.pathname)) return;
+    let eventId = null;
+    try {
+      eventId = sessionStorage.getItem(META_LEAD_KEY);
+      sessionStorage.removeItem(META_LEAD_KEY);
+    } catch (err) {
+      return;
+    }
+    if (eventId && typeof window.fbq === 'function') {
+      window.fbq('track', 'Lead', {}, { eventID: eventId });
+    }
+  }
+
+  function initMetaTracking() {
+    if (!window.mfpMeta) return;
+    captureFbc();
+    firePendingMetaLead();
+    whenFbpReady(() => sendCapiEvent('PageView', window.mfpMeta.pageViewId));
   }
 
   /* ---------------------------------------------------------
@@ -395,6 +511,7 @@ const SITE_CONFIG = {
     initForms();
     preselectService();
     initYear();
+    initMetaTracking();
   }
 
   if (document.readyState === 'loading') {

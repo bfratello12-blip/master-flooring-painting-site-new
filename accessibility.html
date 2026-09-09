@@ -26,6 +26,37 @@
   });
 </script>
 
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+window.mfpMeta = (function () {
+  function uuid() {
+    if (window.crypto && typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+    if (window.crypto && typeof crypto.getRandomValues === 'function') {
+      var b = crypto.getRandomValues(new Uint8Array(16));
+      b[6] = (b[6] & 0x0f) | 0x40; b[8] = (b[8] & 0x3f) | 0x80;
+      var h = []; for (var i = 0; i < 16; i++) h.push(('0' + b[i].toString(16)).slice(-2));
+      return h.slice(0,4).join('')+'-'+h.slice(4,6).join('')+'-'+h.slice(6,8).join('')+'-'+h.slice(8,10).join('')+'-'+h.slice(10,16).join('');
+    }
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+  return { pixelId: '803998612111685', pageViewId: uuid(), uuid: uuid };
+})();
+fbq('init', '803998612111685');
+fbq('track', 'PageView', {}, { eventID: window.mfpMeta.pageViewId });
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=803998612111685&ev=PageView&noscript=1"></noscript>
+
 <title>Accessibility Statement | Master Flooring &amp; Painting</title>
 <meta name="description" content="Our commitment to keeping the Master Flooring &amp; Painting website usable for everyone, and how to reach us if something on the site is not working for you.">
 <link rel="canonical" href="https://www.masterflooringandpainting.com/accessibility.html">
