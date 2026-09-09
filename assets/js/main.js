@@ -299,18 +299,10 @@ const SITE_CONFIG = {
           if (!validateField(field) && !firstInvalid) firstInvalid = field;
         });
 
-        const consent = form.querySelector('input[name="consent"]');
-
         if (firstInvalid) {
           const input = firstInvalid.querySelector('input, select, textarea');
           if (input) input.focus();
           showStatus(status, 'err', 'Check the highlighted fields', 'A few details are missing or incomplete.');
-          return;
-        }
-
-        if (consent && !consent.checked) {
-          consent.focus();
-          showStatus(status, 'err', 'Almost there', 'Please check the consent box so we know how to reach you.');
           return;
         }
 

@@ -323,10 +323,6 @@ ${SERVICE_OPTIONS}
             </div>
           </div>
           <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
-          <label class="consent" style="margin-top:.85rem">
-            <input type="checkbox" name="consent" required>
-            <span>It's OK to contact me about this request by phone, text or email.</span>
-          </label>
           <button class="btn btn--lg btn--block" type="submit" style="margin-top:1.1rem">Request my free estimate ${icon('arrow-right')}</button>
           <div class="form-status" aria-live="polite"></div>
           <p class="quote-card__foot">Rather talk it through? Call <a href="${PHONE_HREF}">${PHONE_DISPLAY}</a></p>
