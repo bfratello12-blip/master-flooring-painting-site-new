@@ -281,26 +281,15 @@ const SITE_CONFIG = {
         // Blocks a second lead from an Enter-key submit while a request is in flight.
         if (submitting) return;
 
-        // Every failure looks identical to the visitor. ?debug=1 reveals which one it was,
-        // which is the only practical way to diagnose a phone we cannot attach DevTools to.
-        const debug = /[?&]debug=1(&|$)/.test(window.location.search);
-        const reportFailure = (reason) => {
-          if (window.console && typeof console.warn === 'function') {
-            console.warn('[estimate form] not delivered — ' + reason);
-          }
+        // Honeypot. Never fails silently — a dead button would look like a broken form.
+        const trap = form.querySelector('input[name="_honey"]');
+        if (trap && trap.value) {
           showStatus(
             status,
             'err',
             'That did not go through',
-            'Please call ' + SITE_CONFIG.PHONE_DISPLAY + ' or email ' + SITE_CONFIG.EMAIL +
-              ' and we will take care of it.' + (debug ? '<br><br><code>' + reason + '</code>' : '')
+            'Please call ' + SITE_CONFIG.PHONE_DISPLAY + ' or email ' + SITE_CONFIG.EMAIL + ' and we will take care of it.'
           );
-        };
-
-        // Honeypot. Never fails silently — a dead button would look like a broken form.
-        const trap = form.querySelector('input[name="_honey"]');
-        if (trap && trap.value) {
-          reportFailure('honeypot filled (bot, or browser autofill)');
           return;
         }
 
@@ -348,20 +337,23 @@ const SITE_CONFIG = {
           body: JSON.stringify(payload)
         })
           .then((res) => {
-            if (!res.ok) throw new Error('FormSubmit HTTP ' + res.status);
+            if (!res.ok) throw new Error('Request failed');
             return res.json();
           })
           .then((body) => {
             // FormSubmit answers 200 with success:"false" when it has not accepted the lead.
-            if (!body || String(body.success) !== 'true') {
-              throw new Error('FormSubmit refused: ' + ((body && body.message) || 'no message'));
-            }
+            if (!body || String(body.success) !== 'true') throw new Error('Delivery not confirmed');
             trackMetaLead(payload);
             finish(true);
           })
-          .catch((err) => {
+          .catch(() => {
             finish(false);
-            reportFailure((err && err.message) || 'request blocked or network unreachable');
+            showStatus(
+              status,
+              'err',
+              'That did not go through',
+              'Please call ' + SITE_CONFIG.PHONE_DISPLAY + ' or email ' + SITE_CONFIG.EMAIL + ' and we will take care of it.'
+            );
           });
       });
     });
