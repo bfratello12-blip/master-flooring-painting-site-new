@@ -461,8 +461,18 @@ function layout(meta, body) {
   );
 
   // Fires on page load only for pages that declare `adsConversion` in their front matter.
+  // The user_data block must precede the event so the Google tag hashes and attaches it.
   const adsConversion = meta.adsConversion
     ? `
+<!-- Enhanced conversions: match data stashed by main.js at form submit -->
+<script>
+  try {
+    var mfpAdsUserData = sessionStorage.getItem('mfp_ads_user_data');
+    sessionStorage.removeItem('mfp_ads_user_data');
+    if (mfpAdsUserData) gtag('set', 'user_data', JSON.parse(mfpAdsUserData));
+  } catch (e) { /* unenhanced is still a valid conversion */ }
+</script>
+
 <!-- Event snippet for ${meta.adsConversion.label} conversion page -->
 <script>
   gtag('event', 'conversion', {

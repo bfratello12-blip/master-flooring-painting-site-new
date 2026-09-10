@@ -57,6 +57,15 @@ fbq('track', 'PageView', {}, { eventID: window.mfpMeta.pageViewId });
 </script>
 <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=803998612111685&ev=PageView&noscript=1"></noscript>
 
+<!-- Enhanced conversions: match data stashed by main.js at form submit -->
+<script>
+  try {
+    var mfpAdsUserData = sessionStorage.getItem('mfp_ads_user_data');
+    sessionStorage.removeItem('mfp_ads_user_data');
+    if (mfpAdsUserData) gtag('set', 'user_data', JSON.parse(mfpAdsUserData));
+  } catch (e) { /* unenhanced is still a valid conversion */ }
+</script>
+
 <!-- Event snippet for Free Estimate Form conversion page -->
 <script>
   gtag('event', 'conversion', {

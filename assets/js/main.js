@@ -344,6 +344,7 @@ const SITE_CONFIG = {
             // FormSubmit answers 200 with success:"false" when it has not accepted the lead.
             if (!body || String(body.success) !== 'true') throw new Error('Delivery not confirmed');
             trackMetaLead(payload);
+            stashAdsUserData(payload);
             finish(true);
           })
           .catch(() => {
@@ -364,6 +365,55 @@ const SITE_CONFIG = {
     el.className = 'form-status is-visible form-status--' + type;
     el.innerHTML = '<strong>' + title + '</strong>' + message;
     el.setAttribute('role', 'status');
+  }
+
+  /* ---------------------------------------------------------
+     Google Ads enhanced conversions
+
+     The conversion event fires in the <head> of thank-you.html,
+     long before this file runs, so the match data has to be
+     waiting for it in sessionStorage. Values are passed in the
+     clear and hashed by the Google tag itself — never hash here.
+     --------------------------------------------------------- */
+  const ADS_USER_DATA_KEY = 'mfp_ads_user_data';
+
+  /* Google requires E.164. Anything that is not a US 10/11-digit
+     number is dropped rather than sent in a format it will reject. */
+  function toE164(value) {
+    const digits = String(value || '').replace(/\D/g, '');
+    if (digits.length === 10) return '+1' + digits;
+    if (digits.length === 11 && digits.charAt(0) === '1') return '+' + digits;
+    return '';
+  }
+
+  function stashAdsUserData(data) {
+    try {
+      const userData = {};
+      const email = String(data.email || '').trim().toLowerCase();
+      const phone = toE164(data.phone);
+      const address = {};
+
+      if (/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) userData.email = email;
+      if (phone) userData.phone_number = phone;
+
+      const nameParts = String(data.name || '').trim().split(/\s+/).filter(Boolean);
+      if (nameParts.length) {
+        address.first_name = nameParts[0];
+        if (nameParts.length > 1) address.last_name = nameParts[nameParts.length - 1];
+      }
+      // "Town or ZIP" is free text, so only a real 5-digit ZIP is usable.
+      const location = String(data.location || '').trim();
+      if (/^\d{5}$/.test(location)) address.postal_code = location;
+      if (Object.keys(address).length) {
+        address.country = 'US';
+        userData.address = address;
+      }
+
+      if (!userData.email && !userData.phone_number) return;
+      sessionStorage.setItem(ADS_USER_DATA_KEY, JSON.stringify(userData));
+    } catch (err) {
+      /* private mode: the conversion still fires, just unenhanced */
+    }
   }
 
   /* ---------------------------------------------------------
